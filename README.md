@@ -4,6 +4,7 @@ GroceryShopper
 the plan is to create a bbm, nfc and email enabled app that helps wives tell husbands what to buy on the way home from work and helps husbands figure out what the wife really wanted
 
 the app supports two main use cases
+
 	- putting new items in the list 
 		- using in-app UI
 		- from email message
@@ -102,22 +103,22 @@ Add Item to List from BBM message
 	user reviews list and clicks Add 
 		app adds items and returns to email app
 
+Grocery List Item
 
-
-	user sends email in the following format
-name: item name 1
-price: .99/kg
-quantity:  
-notes: 
----
-name: 
-price: 
-quantity:  
-notes: 
----
-
-each item in the list shows
 	- a name
 	- a price
 	- a quantity 
 	- notes
+
+Email Message format	
+
+	name: item name 1
+	price: .99/kg
+	quantity: 1  
+	notes: this is some notes
+	---
+	name: item name 2
+	price: .99/lb
+	quantity: 3
+	notes: this is some more notes
+	---
