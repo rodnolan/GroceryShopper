@@ -1,0 +1,35 @@
+<!-- Copyright (c) 2013 Rod Nolan. All rights reserved. -->
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Grocery Shopper</title>
+	<link type="text/css" rel="stylesheet" href="./css/bbui-min.css" />
+	<script type="text/javascript" src="local:///chrome/webworks.js"></script>
+	<script type="text/javascript" src="./js/bbui-min.js"></script>	
+	<script type="text/javascript" src="./js/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="./js/json2.js"></script>
+	<script type="text/javascript">
+		var app = {};
+		window.addEventListener('DOMContentLoaded', function () {
+			document.addEventListener('webworksready', onwebworksready, false);
+		}, false);
+		onwebworksready = function () {
+			bb.init({
+				ondomready: function (element, id) {
+					switch (id) {
+						case 'goShopping' :
+						
+						break;
+						case 'manageList' :
+						
+						break;
+					}
+				}
+			});
+			bb.pushScreen('menu.htm', 'menu');
+		};
+	</script>
+	<script type="text/javascript" src="./js/db.js"></script>
+</head>
+<body></body>
+</html>

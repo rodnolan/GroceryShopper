@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (c) 2013 Rod Nolan. All rights reserved. -->
+<widget xmlns="http://www.w3.org/ns/widgets"
+        xmlns:rim="http://www.blackberry.com/ns/widgets"
+        version="1.0.0.0"
+        id="com.rodnolan.bb10.GroceryShopper"
+        xml:lang="en">
+
+	<!-- Application details. -->
+    <name>Grocery Shopper</name>
+    <author>Rod Nolan</author>
+    <content src="index.html"/>
+	<icon src="img/avatar-128x128.png" />
+
+	<!-- Required features for BBUI.js. -->
+	<feature id="blackberry.app" />
+	<feature id="blackberry.app.event"/>
+	<feature id="blackberry.system.event" />
+
+	<!-- Additional features. -->
+	<feature id="blackberry.bbm.platform" />
+	<feature id="blackberry.invoke" />
+	<feature id="blackberry.invoke.card" />
+	<feature id="blackberry.system" />
+	<feature id="blackberry.ui.toast" />
+
+	<!-- Required permissions. -->
+	<rim:permissions>
+		<rim:permit>access_shared</rim:permit>
+		<rim:permit>bbm_connect</rim:permit>
+	</rim:permissions>
+</widget>
