@@ -25,9 +25,9 @@
 		 	"beta" will deploy the beta build
 		 	"release" will deploy the release build
 	-->
-	<property name="bb10.deploy.device" value="false" /> 
+	<property name="bb10.deploy.device" value="true" /> 
 	<!-- if true, packages and deploys a debug build to the simulator -->
-	<property name="bb10.deploy.sim" value="true" />
+	<property name="bb10.deploy.sim" value="false" />
 
 	<!-- if you're using a device and you've set up your signing keys, set this to true to create and deploy a debug token -->
 	<property name="bb10.doDebugToken" value="false" />

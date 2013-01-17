@@ -8,8 +8,15 @@
 	<script type="text/javascript" src="./js/bbui-min.js"></script>	
 	<script type="text/javascript" src="./js/jquery-1.8.3.min.js"></script>
 	<script type="text/javascript" src="./js/json2.js"></script>
+
 	<script type="text/javascript">
 		var app = {};
+		app.LIST_CART = 1;
+		app.LIST_SHELF = 2;
+
+		app.LSK_CART = 'cart';
+		app.LSK_SHELF = 'shelf';
+
 		window.addEventListener('DOMContentLoaded', function () {
 			document.addEventListener('webworksready', onwebworksready, false);
 		}, false);
@@ -18,7 +25,7 @@
 				ondomready: function (element, id) {
 					switch (id) {
 						case 'goShopping' :
-						
+							app.lists.onDOMReady(app.LIST_SHELF);
 						break;
 						case 'manageList' :
 						
@@ -26,10 +33,12 @@
 					}
 				}
 			});
-			bb.pushScreen('menu.htm', 'menu');
+			bb.pushScreen('goShopping.html', 'goShopping');
 		};
 	</script>
+
 	<script type="text/javascript" src="./js/db.js"></script>
+
 </head>
 <body></body>
 </html>
