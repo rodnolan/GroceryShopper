@@ -11,12 +11,12 @@
 
 	<script type="text/javascript">
 		var app = {};
-		app.LIST_CART = 1;
-		app.LIST_SHELF = 2;
-
-		app.LSK_CART = 'cart';
+		app.LIST_SHELF = 'listShelf';
+		app.LIST_CART = 'listCart';
 		app.LSK_SHELF = 'shelf';
-
+		app.LSK_CART = 'cart';
+		app.DATA_CHANGED_EVENT = 'dataChanged';
+		
 		window.addEventListener('DOMContentLoaded', function () {
 			document.addEventListener('webworksready', onwebworksready, false);
 		}, false);

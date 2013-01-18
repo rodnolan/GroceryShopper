@@ -1,33 +1,33 @@
 app.db = function () {
 
 	'use strict';
-//		<div id="sharetext" data-bb-type="item" data-bb-img="./img/Large/White/icon_242.png" data-bb-title="Share Text"></div>
-//		<div id="shareimg" data-bb-type="item" data-bb-img="./img/Large/White/icon_209.png" data-bb-title="Share Image" data-bb-accent-text="file://"></div>
 
 	var pub = {};
+		
 
 	pub.clearTestData = function () {
-		localStorage.setItem('shelf', '');
-		localStorage.setItem('cart', '');
+		localStorage.clear();
+		localStorage.setItem(app.LSK_SHELF, '');
+		localStorage.setItem(app.LSK_CART, '');
 	};
 
 	pub.setTestData = function () {
 		console.log('pub.populateTestData');
 
 		var shelfData = '['
-				+ '{"idx":"1", "name":"Item 1", "price":"0.99/ea", "quantity":"12"},'
-				+ '{"idx":"4", "name":"Item 4", "price":"4.99/lb", "quantity":"4"},'
-				+ '{"idx":"5", "name":"Item 5", "price":"2.99/kg", "quantity":"2"}'
+				+ '{"id":"1", "name":"Item 1", "price":"0.99/ea", "quantity":"12"},'
+				+ '{"id":"4", "name":"Item 4", "price":"4.99/lb", "quantity":"4"},'
+				+ '{"id":"5", "name":"Item 5", "price":"2.99/kg", "quantity":"2"}'
 				+ ']',
 			cartData = '['
-				+ '{"idx":"2", "name":"Item 2", "price":"2.59/kg", "quantity":"1"},'
-				+ '{"idx":"3", "name":"Item 3", "price":"4.99/lb", "quantity":"4"},'
-				+ '{"idx":"6", "name":"Item 6", "price":"1.19/ea", "quantity":"2"}'
+				+ '{"id":"2", "name":"Item 2", "price":"2.59/kg", "quantity":"1"},'
+				+ '{"id":"3", "name":"Item 3", "price":"4.99/lb", "quantity":"4"},'
+				+ '{"id":"6", "name":"Item 6", "price":"1.19/ea", "quantity":"2"}'
 				+ ']';
 				
 		console.log('storing sample data');
-		localStorage.setItem('shelf', shelfData);
-		localStorage.setItem('cart', cartData);
+		localStorage.setItem(app.LSK_SHELF, shelfData);
+		localStorage.setItem(app.LSK_CART, cartData);
 	};
 
 	pub.getArray = function (key) {
@@ -40,23 +40,47 @@ app.db = function () {
 		}
 	};
 
-	pub.moveItemToCart = function (idx) {
-		console.log('Adding item to cart: ' + idx);
-		var cart = pub.getArray(app.LSK_CART), 
-			shelf = pub.getArray(app.LSK_SHELF), 
-			itemToMove = shelf.splice(idx, 1)[0];
+	pub.moveItem = function (idx, srcList) {
+		var src,  
+			dest, 
+			itemToMove,
+			cart = pub.getArray(app.LSK_CART),
+			shelf = pub.getArray(app.LSK_SHELF);
+
+		switch(srcList) {
+			case app.LIST_SHELF :
+				console.log('Moving item to cart: ' + idx);
+				src = shelf; 
+				dest = cart;
+			break;
+			case app.LIST_CART :
+				console.log('Putting item back on shelf: ' + idx);
+				src = cart; 
+				dest = shelf;
+			break;
+		}
+		itemToMove = src.splice(idx, 1)[0];
 		if (itemToMove) {
-			cart.push(itemToMove);
+			dest.push(itemToMove);
 			pub.persist(app.LSK_CART, cart);
 			pub.persist(app.LSK_SHELF, shelf);
+			pub.dispatchDataEvent(app.DATA_CHANGED_EVENT);
 		}
+
 	};
 
 	pub.persist = function (slot, items) {
 		localStorage.setItem(slot, JSON.stringify(items));
 	};
 
+	pub.dispatchDataEvent = function (type) {
+		var evt = document.createEvent('Events');
+		evt.initEvent(type, true, true);
+		document.dispatchEvent(evt);
+	};
 
 
 	return pub;
 }();
+
+
