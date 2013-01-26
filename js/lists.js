@@ -15,6 +15,7 @@ app.lists = function () {
 		document.getElementById('tabInventory').addEventListener('click', function(){pub.populateItems(app.INVENTORY);});
 		document.getElementById('tabList').addEventListener('click', function(){pub.populateItems(app.LIST);});
 		document.getElementById('tabCart').addEventListener('click', function(){pub.populateItems(app.CART);});
+		document.getElementById('btnAdd').addEventListener('click', function(){bb.pushScreen('addForm.html', 'addForm')});
 	};
 
 	pub.initUI = function (whichList) {
@@ -64,7 +65,7 @@ app.lists = function () {
 				case app.LIST :
 					console.log('list items');
 					listItems = app.db.getArray(app.KEY_LIST);
-					screenTitle.setCaption('Grocery List');
+					screenTitle.setCaption('My List');
 
 				break;
 			}
