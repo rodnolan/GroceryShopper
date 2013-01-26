@@ -11,12 +11,12 @@
 
 	<script type="text/javascript">
 		var app = {};
-		app.LIST_INVENTORY = 'listInventory';
-		app.LIST_SHELF = 'listShelf';
-		app.LIST_CART = 'listCart';
-		app.LSK_INVENTORY = 'inventory';
-		app.LSK_SHELF = 'shelf';
-		app.LSK_CART = 'cart';
+		app.INVENTORY = 'listInventory';
+		app.LIST = 'listShelf';
+		app.CART = 'listCart';
+		app.KEY_INVENTORY = 'inventory';
+		app.KEY_LIST = 'list';
+		app.KEY_CART = 'cart';
 		app.DATA_CHANGED_EVENT = 'dataChanged';
 		
 		window.addEventListener('DOMContentLoaded', function () {
@@ -26,16 +26,13 @@
 			bb.init({
 				ondomready: function (element, id) {
 					switch (id) {
-						case 'goShopping' :
-							app.lists.onDOMReady(app.LIST_SHELF);
-						break;
-						case 'manageList' :
-						
+						case 'lists' :
+							app.lists.onDOMReady(app.INVENTORY);
 						break;
 					}
 				}
 			});
-			bb.pushScreen('goShopping.html', 'goShopping');
+			bb.pushScreen('lists.html', 'lists');
 		};
 	</script>
 

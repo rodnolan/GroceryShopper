@@ -9,10 +9,11 @@ app.lists = function () {
 		pub.addEventListeners();
 		pub.populateItems(whichList);
 	};
-
+ 
 	pub.addEventListeners = function (whichList) {
-		document.getElementById('btnCartItems').addEventListener('click', function(){pub.populateItems(app.LIST_CART);});
-		document.getElementById('btnShelfItems').addEventListener('click', function(){pub.populateItems(app.LIST_SHELF);});
+		document.getElementById('btnInventory').addEventListener('click', function(){pub.populateItems(app.INVENTORY);});
+		document.getElementById('btnList').addEventListener('click', function(){pub.populateItems(app.LIST);});
+		document.getElementById('btnCart').addEventListener('click', function(){pub.populateItems(app.CART);});
 	};
 
 	pub.populateItems = function (whichList) {
@@ -27,16 +28,22 @@ app.lists = function () {
 		itemsList.clear();
 
 		switch (whichList) {
-			case app.LIST_CART :
-				console.log('my cart items');
-				listItems = app.db.getArray(app.LSK_CART);
-				screenTitle.setCaption('Items In Cart');
+			case app.INVENTORY :
+				console.log('inventory items');
+				listItems = app.db.getArray(app.KEY_INVENTORY);
+				screenTitle.setCaption('Inventory');
 
 			break;
-			case app.LIST_SHELF :
-				console.log('shelf items');
-				listItems = app.db.getArray(app.LSK_SHELF);
-				screenTitle.setCaption('Items to Get');
+			case app.CART :
+				console.log('cart items');
+				listItems = app.db.getArray(app.KEY_CART);
+				screenTitle.setCaption('My Cart');
+
+			break;
+			case app.LIST :
+				console.log('list items');
+				listItems = app.db.getArray(app.KEY_LIST);
+				screenTitle.setCaption('Grocery List');
 
 			break;
 		}
