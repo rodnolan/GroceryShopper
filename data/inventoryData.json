@@ -1,0 +1,8 @@
+[
+	{"id":"1", "name":"eggs", "price":"", "quantity":""},
+	{"id":"2", "name":"cheese", "price":"", "quantity":""},
+	{"id":"3", "name":"apples", "price":"", "quantity":""},
+	{"id":"4", "name":"milk", "price":"", "quantity":""},
+	{"id":"5", "name":"bread", "price":"", "quantity":""},
+	{"id":"6", "name":"oranges", "price":"", "quantity":""}
+]
