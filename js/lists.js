@@ -7,13 +7,35 @@ app.lists = function () {
 	pub.onDOMReady = function (whichList) {
 		app.db.setTestData();
 		pub.addEventListeners();
+		pub.initUI(whichList);
 		pub.populateItems(whichList);
 	};
  
-	pub.addEventListeners = function (whichList) {
-		document.getElementById('btnInventory').addEventListener('click', function(){pub.populateItems(app.INVENTORY);});
-		document.getElementById('btnList').addEventListener('click', function(){pub.populateItems(app.LIST);});
-		document.getElementById('btnCart').addEventListener('click', function(){pub.populateItems(app.CART);});
+	pub.addEventListeners = function () {
+		document.getElementById('tabInventory').addEventListener('click', function(){pub.populateItems(app.INVENTORY);});
+		document.getElementById('tabList').addEventListener('click', function(){pub.populateItems(app.LIST);});
+		document.getElementById('tabCart').addEventListener('click', function(){pub.populateItems(app.CART);});
+	};
+
+	pub.initUI = function (whichList) {
+		var actionBar = document.getElementById('actionBar'),
+			tInvt = document.getElementById('tabInventory'),
+			tCart = document.getElementById('tabCart'),
+			tList = document.getElementById('tabList'),
+			selectedTab;
+
+		switch (whichList) {
+			case app.LIST :
+				selectedTab = tList;
+			break;
+			case app.INVENTORY :
+				selectedTab = tInvt;
+			break;
+			case app.CART :
+				selectedTab = tCart;
+			break;
+		}
+		actionBar.setSelectedTab(selectedTab);
 	};
 
 	pub.populateItems = function (whichList) {
@@ -58,7 +80,9 @@ app.lists = function () {
 				newItem.setAttribute('data-bb-type', 'item');
 				newItem.setAttribute('data-bb-style', 'removebuttons');
 				newItem.setAttribute('data-bb-title', listItem.name);
-				newItem.innerHTML = listItem.quantity + " @ " + listItem.price;
+				if (whichList != app.INVENTORY) {
+					newItem.innerHTML = listItem.quantity + " @ " + listItem.price;
+				}
 				console.log(newItem);
 
 				newItem.onclick = function(){
