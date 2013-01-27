@@ -16,7 +16,7 @@ app.db = function () {
 
 		var filePath = 'data/inventoryData.json',
 			inventoryData = '',
-			shelfData = '',
+			listData = '',
 			cartData = '';
  		
 		$.ajax({
@@ -45,7 +45,7 @@ app.db = function () {
 									+ ']';
 				}
 				localStorage.setItem(app.KEY_INVENTORY, JSON.stringify(inventoryData));
-				localStorage.setItem(app.KEY_LIST, shelfData);
+				localStorage.setItem(app.KEY_LIST, listData);
 				localStorage.setItem(app.KEY_CART, cartData);
 			}
 		});			
@@ -63,6 +63,16 @@ app.db = function () {
 		}
 	};
 
+	pub.addItemToList = function (item) {
+		var inventory = pub.getArray(app.KEY_INVENTORY),
+			list = pub.getArray(app.KEY_LIST);
+		inventory.push(item);
+		list.push(item);
+		pub.persist(app.KEY_INVENTORY, inventory);
+		pub.persist(app.KEY_LIST, list);
+		pub.dispatchDataEvent(app.DATA_CHANGED_EVENT);
+	};
+
 	pub.moveItem = function (idx, srcList) {
 		var src,  
 			dest, 
@@ -70,23 +80,23 @@ app.db = function () {
 			itemToCopy,
 			inventory = pub.getArray(app.KEY_INVENTORY),
 			cart = pub.getArray(app.KEY_CART),
-			shelf = pub.getArray(app.KEY_LIST);
+			list = pub.getArray(app.KEY_LIST);
 
 		switch(srcList) {
 			case app.INVENTORY :
-				console.log('Copying item to shelf: ' + idx);
+				console.log('Copying item to list: ' + idx);
 				src = inventory; 
-				dest = shelf;
+				dest = list;
 				itemToCopy = src[idx];
 				if (itemToCopy) {
 					dest.push(itemToCopy);
-					pub.persist(app.KEY_LIST, shelf);
+					pub.persist(app.KEY_LIST, list);
 					pub.dispatchDataEvent(app.DATA_CHANGED_EVENT);
 				}
 			break;
 			case app.LIST :
 				console.log('Moving item to cart: ' + idx);
-				src = shelf; 
+				src = list; 
 				dest = cart;
 
 				itemToMove = src.splice(idx, 1)[0];
@@ -94,21 +104,21 @@ app.db = function () {
 					dest.push(itemToMove);
 					pub.persist(app.KEY_INVENTORY, inventory);
 					pub.persist(app.KEY_CART, cart);
-					pub.persist(app.KEY_LIST, shelf);
+					pub.persist(app.KEY_LIST, list);
 					pub.dispatchDataEvent(app.DATA_CHANGED_EVENT);
 				}
 
 			break;
 			case app.CART :
-				console.log('Putting item back on shelf: ' + idx);
+				console.log('Putting item back on list: ' + idx);
 				src = cart; 
-				dest = shelf;
+				dest = list;
 				itemToMove = src.splice(idx, 1)[0];
 				if (itemToMove) {
 					dest.push(itemToMove);
 					pub.persist(app.KEY_INVENTORY, inventory);
 					pub.persist(app.KEY_CART, cart);
-					pub.persist(app.KEY_LIST, shelf);
+					pub.persist(app.KEY_LIST, list);
 					pub.dispatchDataEvent(app.DATA_CHANGED_EVENT);
 				}
 			break;
