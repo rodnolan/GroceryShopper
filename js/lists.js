@@ -5,7 +5,10 @@ app.lists = function () {
 	var pub = {};
 
 	pub.onDOMReady = function (whichList) {
-		app.db.setTestData();
+		if (localStorage.getItem(app.KEY_JSON_LOADED) == null) {
+			console.log('loading inventory from external source');
+			app.db.initData();
+		}
 		pub.addEventListeners();
 		pub.initUI(whichList);
 		pub.populateItems(whichList);

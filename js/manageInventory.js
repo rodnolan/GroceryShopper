@@ -32,6 +32,7 @@ app.manageInventory = function () {
 		window.removeEventListener(app.DATA_CHANGED_EVENT, pub.onDataUpdated);
 		if (pub.afterSave === 'continue') {
 			// clear form
+			console.log('save and start over');
 			document.getElementById('name').value = '';
 			document.getElementById('price').value = '';
 			document.getElementById('quantity').value = '';
@@ -39,6 +40,7 @@ app.manageInventory = function () {
 		} else {
 			// return to previous list 
 			console.log('save and return');
+			bb.popScreen();
 		}
 
 	};

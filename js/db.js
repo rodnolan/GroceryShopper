@@ -11,7 +11,7 @@ app.db = function () {
 		localStorage.setItem(app.KEY_CART, '');
 	};
 
-	pub.setTestData = function () {
+	pub.initData = function () {
 		console.log('pub.populateTestData');
 
 		var filePath = 'data/inventoryData.json',
@@ -47,6 +47,7 @@ app.db = function () {
 				localStorage.setItem(app.KEY_INVENTORY, JSON.stringify(inventoryData));
 				localStorage.setItem(app.KEY_LIST, listData);
 				localStorage.setItem(app.KEY_CART, cartData);
+				localStorage.setItem(app.KEY_JSON_LOADED, true);
 			}
 		});			
 	};
