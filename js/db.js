@@ -57,10 +57,10 @@ app.db = function () {
 	pub.getArray = function (key) {
 		console.log('Getting ' + key + ' items.');
 		var temp = localStorage.getItem(key);
-		if (temp === "") {
-			return [];
-		} else {
+		if (temp != null) {
 			return JSON.parse(temp);
+		} else {
+			return [];
 		}
 	};
 
