@@ -23,6 +23,7 @@
 	<feature id="blackberry.invoke.card" />
 	<feature id="blackberry.system" />
 	<feature id="blackberry.ui.toast" />
+	<feature id="blackberry.ui.contextmenu" />
 	
 	<!-- Required permissions. -->
 	<rim:permissions>

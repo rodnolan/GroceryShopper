@@ -4,6 +4,13 @@ app.lists = function () {
 
 	var pub = {};
 
+	pub.onScreenReady = function (element) {
+		//var actionBarFilePath = 'actionBars/abGroceryList.html',
+		//	actionBarButtons = "<div id='btnInventory' data-bb-type='action' data-bb-style='tab' data-bb-overflow='false' data-bb-img='./img/Large/White/icon_180.png'>Inventory</div><div id='btnList' data-bb-type='action' data-bb-style='tab' data-bb-overflow='false' data-bb-img='./img/Large/White/icon_180.png'>Grocery List</div><div id='btnCart' data-bb-type='action' data-bb-style='tab' data-bb-overflow='false' data-bb-img='./img/Large/White/icon_180.png'>My Cart</div>";
+		//$('#actionBar', element).append(actionBarButtons);
+	};
+
+
 	pub.onDOMReady = function (whichList) {
 		if (localStorage.getItem(app.KEY_JSON_LOADED) == null) {
 			console.log('loading inventory from external source');
@@ -19,6 +26,14 @@ app.lists = function () {
 		document.getElementById('tabList').addEventListener('click', function(){pub.populateItems(app.LIST);});
 		document.getElementById('tabCart').addEventListener('click', function(){pub.populateItems(app.CART);});
 		document.getElementById('btnAdd').addEventListener('click', function(){bb.pushScreen('addForm.html', 'addForm')});
+		document.getElementById('miSettings').addEventListener('click', function(){ });
+		document.getElementById('miBBMConnect').addEventListener('click', function(){ });
+		document.getElementById('miSendList').addEventListener('click', function(){ });
+		document.getElementById('cmDeleteItem').addEventListener('click', function(){ });
+		document.getElementById('cmEditItem').addEventListener('click', function(){ });
+		document.getElementById('cmAddItem').addEventListener('click', function(){ bb.pushScreen('addForm.html', 'addForm') });
+
+
 	};
 
 	pub.initUI = function (whichList) {
@@ -110,5 +125,6 @@ app.lists = function () {
 
 	return pub;
 }();
+
 
 

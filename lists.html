@@ -1,17 +1,16 @@
 <!-- Copyright (c) 2013 Rod Nolan. All rights reserved. -->
 <div data-bb-type="screen">
 
-
 	<div data-bb-type="menu">
-		<div data-bb-type="menu-item" data-bb-img="./img/Large/White/icon_180.png">Settings</div>
-		<div data-bb-type="menu-item" data-bb-img="./img/Large/White/icon_180.png">Connect to BBM</div>
-		<div data-bb-type="menu-item" data-bb-img="./img/Large/White/icon_180.png">Send Grocery List</div>
+		<div id="miSettings" data-bb-type="menu-item" data-bb-img="./img/Large/White/icon_180.png">Settings</div>
+		<div id="miBBMConnect" data-bb-type="menu-item" data-bb-img="./img/Large/White/icon_180.png">Connect to BBM</div>
+		<div id="miSendList" data-bb-type="menu-item" data-bb-img="./img/Large/White/icon_180.png">Send Grocery List</div>
 	</div>
 
 	<div data-bb-type="context-menu">
-		<div data-bb-type="action" data-bb-img="./img/Large/White/icon_180.png">Delete Item</div>
-		<div data-bb-type="action" data-bb-img="./img/Large/White/icon_180.png">Edit Item</div>
-		<div data-bb-type="action" data-bb-img="./img/Large/White/icon_180.png">Add a New Item</div>
+		<div id="cmDeleteItem" data-bb-type="action" data-bb-img="./img/Large/White/icon_180.png">Delete Item</div>
+		<div id="cmEditItem" data-bb-type="action" data-bb-img="./img/Large/White/icon_180.png">Edit Item</div>
+		<div id="cmAddItem" data-bb-type="action" data-bb-img="./img/Large/White/icon_180.png">Add a New Item</div>
 	</div>
 
 	<script type="text/javascript" src="./js/lists.js"></script>
@@ -28,7 +27,7 @@
 		<div id="tabInventory" 
 			data-bb-type="action" 
 			data-bb-style="tab" 
-			data-bb-overflow="true" 
+			data-bb-overflow="false" 
 			data-bb-img="./img/Large/White/icon_180.png">Inventory</div>
 		<div id="tabList" 
 			data-bb-type="action" 

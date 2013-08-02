@@ -1,50 +1,15 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<!-- Copyright (c) 2013 Rod Nolan. All rights reserved. -->
-
-<!-- Set name to the application name: used for BAR/COD and directory on file system -->
-<project default="build" basedir="." name="GroceryShopper">
-	
-	<!-- Update these paths for your environment -->
-	<property name="anthome.mac" value="/Users/rodnolan/Ant-Build-Script/tools/apache-ant-1.8.2" />
-	<property name="anthome.win" value="C:\github\ntg\rim_webworks_bb10\StudentFiles\bb10ww\Ant-Build-Script\tools\apache-ant-1.8.2" />
-	<condition property="anthome" value="${anthome.win}" else="${anthome.mac}">
-		<os family="windows"/>
-	</condition>
-
-	<!-- if true, copies the project assets to the ${RippleSites}/${ant.project.name} folder -->
-	<property name="do.ripple" value="false"/>
-	<!-- if false, remaining properties are ignored and no package is created -->
-	<property name="do.bb10" value="true" /> 
-
-	<!-- one or more of: debug,beta,release -->
-	<property name="bb10.package.types" value="debug" /> 
-	<!-- "false" skips device deployment
-		 "true" deploys the build specified in bb10.package.types if that value is a single item	 
-		 otherwise, specify one of the items specified in bb10.package.types
-		 	"debug" will deploy the debug build
-		 	"beta" will deploy the beta build
-		 	"release" will deploy the release build
-	-->
-	<property name="bb10.deploy.device" value="true" /> 
-	<!-- if true, packages and deploys a debug build to the simulator -->
-	<property name="bb10.deploy.sim" value="false" />
-
-	<!-- if you're using a device and you've set up your signing keys, set this to true to create and deploy a debug token -->
-	<property name="bb10.doDebugToken" value="false" />
-
-	<!-- include the targets that do the actual work-->
+<project default="build" basedir="." name="blank">
+	<property environment="env" />
+	<property name="anthome" value="${env.ANT_HOME}" />
 	<include file="${anthome}/../buildTasks.xml" />
-
-	<!-- then call the targets that do the job according to the properties you set above -->
+	<property name="do.ripple" value="false"/>
+	<property name="do.bb10" value="true" /> 
+	<property name="bb10.package.types" value="debug" /> 
+	<property name="bb10.deploy.device" value="true" /> 
+	<property name="bb10.deploy.sim" value="false" />
 	<target name="build">
-		<!-- optionally creates and deploys debug token to device -->
-		<antcall target="buildTasks.doDebugToken" />
-
-		<!-- cleans, inits, copies src files and zips -->
 		<antcall target="buildTasks.package.preflight" />
-
-		<!-- packages zip and deploys to sim or device -->
 		<antcall target="buildTasks.doBuild" />
 	</target>
-
 </project>
